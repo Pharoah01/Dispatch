@@ -1,6 +1,6 @@
 # Dispatch
 
-A lightweight Python tool that sends bulk HTML emails via the Gmail API. Load your recipients from a CSV, configure your message and branding, and send personalized emails at scale — no SMTP setup required.
+A lightweight Python tool that sends bulk HTML emails via the Gmail API. Load your recipients from a CSV, configure your message and branding, and send personalized emails at scale - no SMTP setup required.
 
 ---
 
@@ -12,10 +12,10 @@ A lightweight Python tool that sends bulk HTML emails via the Gmail API. Load yo
 - Configurable branding (logo, banner)
 - Anti-spam delay between sends
 - Environment-based configuration via `.env`
-- Duplicate email detection — skips repeated entries in CSV with a warning
-- Retry with exponential backoff — configurable max retries per recipient
-- Send log — results saved to `send_log.csv` after every run
-- Plain-text fallback — included alongside HTML for better email client compatibility
+- Duplicate email detection - skips repeated entries in CSV with a warning
+- Retry with exponential backoff - configurable max retries per recipient
+- Send log - results saved to `send_log.csv` after every run
+- Plain-text fallback - included alongside HTML for better email client compatibility
 - Configurable email subject with `{name}`, `{position}`, `{sender}` placeholders
 
 ---
@@ -24,7 +24,7 @@ A lightweight Python tool that sends bulk HTML emails via the Gmail API. Load yo
 
 ```
 dispatch/
-├── script.py           # Main script — builds and sends bulk emails
+├── script.py           # Main script - builds and sends bulk emails
 ├── test_run.py         # Quick test to verify Gmail API auth and sending
 ├── recipients.csv      # Recipient list (name, email, position)
 ├── send_log.csv        # Auto-generated send report (not committed)
@@ -65,19 +65,19 @@ Fill in your values in `.env`:
 GOOGLE_CREDENTIALS_FILE=credentials.json
 TOKEN_FILE=token.json
 
-SENDER_EMAIL=your_email@gmail.com
-SENDER_NAME=Your Organization
+SENDER_EMAIL=
+SENDER_NAME=
 
-INTERVIEW_DATE=Monday, 21 April 2026
-INTERVIEW_TIME=10:00 AM IST
-INTERVIEW_MODE=Google Meet
-MEET_LINK=https://meet.google.com/your-link
+INTERVIEW_DATE=
+INTERVIEW_TIME=
+INTERVIEW_MODE=
+MEET_LINK=
 
-BANNER_URL=https://your-domain.com/banner.png
-LOGO_URL=https://your-domain.com/logo.png
+BANNER_URL=
+LOGO_URL=
 
-RECIPIENTS_CSV=recipients.csv
-EMAIL_SUBJECT=Message from {sender} | {position}
+RECIPIENTS_CSV=
+EMAIL_SUBJECT=
 
 MAX_RETRIES=3
 LOG_FILE=send_log.csv
