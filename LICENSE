@@ -19,3 +19,39 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+ADDITIONAL CLAUSES
+
+1. NO MISUSE CLAUSE
+
+   This Software must not be used for any of the following purposes:
+   - Sending unsolicited bulk emails (spam) or any communication that violates
+     applicable anti-spam laws, including but not limited to CAN-SPAM, GDPR,
+     and CASL.
+   - Harassment, phishing, fraud, or any form of deceptive communication.
+   - Distributing malware, malicious links, or harmful content via email.
+   - Any activity that violates the terms of service of the Gmail API or
+     Google's Acceptable Use Policy.
+
+   Any use of this Software for the above purposes is strictly prohibited and
+   constitutes a violation of this license.
+
+2. DATA PRIVACY CLAUSE
+
+   Users of this Software are solely responsible for ensuring that their use
+   complies with all applicable data protection and privacy laws, including but
+   not limited to GDPR, CCPA, and any local regulations governing the handling
+   of personal data.
+
+   The following obligations apply to all users:
+   - Recipient data (names, email addresses, and any other personal information)
+     stored in CSV files or any other form must be collected and processed with
+     the explicit consent of the individuals concerned.
+   - Recipient data must not be shared with, sold to, or disclosed to any third
+     party without explicit consent.
+   - Users must implement reasonable measures to secure recipient data and
+     prevent unauthorized access.
+   - The authors of this Software bear no responsibility for any mishandling,
+     breach, or unauthorized use of recipient data by users of this Software.
