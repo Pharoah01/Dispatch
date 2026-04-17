@@ -9,25 +9,30 @@ from dotenv import load_dotenv
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
 load_dotenv()
+
 # --- CONFIG ---
 SCOPES = ['https://www.googleapis.com/auth/gmail.send']
 
-INTERVIEW_DATE = "Monday, 21 April 2026"
-INTERVIEW_TIME = "10:00 AM IST"
-INTERVIEW_MODE = "Google Meet"
-MEET_LINK      = "LINK_TO_BE_PROVIDED"
+CREDENTIALS_FILE = os.getenv("GOOGLE_CREDENTIALS_FILE", "credentials.json")
+TOKEN_FILE       = os.getenv("TOKEN_FILE", "token.json")
+SENDER_EMAIL     = os.getenv("SENDER_EMAIL", "")
+SENDER_NAME      = os.getenv("SENDER_NAME", "")
 
+INTERVIEW_DATE = os.getenv("INTERVIEW_DATE", "")
+INTERVIEW_TIME = os.getenv("INTERVIEW_TIME", "")
+INTERVIEW_MODE = os.getenv("INTERVIEW_MODE", "")
+MEET_LINK      = os.getenv("MEET_LINK", "")
 
-BANNER_URL = "BANNER_LINK(HOSTED)"
-LOGO_URL   = "LOGO_LINK(HOSTED)"
+BANNER_URL     = os.getenv("BANNER_URL", "")
+LOGO_URL       = os.getenv("LOGO_URL", "")
 
-SENDER_EMAIL = "elavarasanjaswanth001@gmail.com"
-SENDER_NAME  = "OWASP Student Chapter, Sathyabama"
+RECIPIENTS_CSV = os.getenv("RECIPIENTS_CSV", "recipients.csv")
 
 
 # --- MODEL ---
@@ -60,10 +65,11 @@ def authenticate():
         creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
 
     if not creds or not creds.valid:
-        flow = InstalledAppFlow.from_client_secrets_file(
-            CREDENTIALS_FILE, SCOPES
-        )
-        creds = flow.run_local_server(port=0)
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_FILE, SCOPES)
+            creds = flow.run_local_server(port=0)
 
         with open(TOKEN_FILE, 'w') as token:
             token.write(creds.to_json())
@@ -104,8 +110,7 @@ def create_message(recipient: Recipient):
                         <!-- HEADER -->
                         <tr>
                             <td style="background:#1e3a5f; padding:20px; text-align:center;">
-                                <h2 style="color:white; margin:0;">OWASP Student Chapter</h2>
-                                <p style="color:#cbd5f5; margin:5px 0;">Sathyabama</p>
+                                <h2 style="color:white; margin:0;">{SENDER_NAME}</h2>
                             </td>
                         </tr>
 
@@ -116,7 +121,7 @@ def create_message(recipient: Recipient):
                                 <p>Dear {recipient.name},</p>
 
                                 <p>
-                                    Greetings from <b>OWASP Student Chapter, Sathyabama</b>!
+                                    Greetings from <b>{SENDER_NAME}</b>!
                                 </p>
 
                                 <p>
@@ -148,7 +153,7 @@ def create_message(recipient: Recipient):
 
                                 <p>
                                     Regards,<br>
-                                    <b>OWASP Student Chapter</b>
+                                    <b>{SENDER_NAME}</b>
                                 </p>
 
                             </td>
@@ -158,7 +163,7 @@ def create_message(recipient: Recipient):
                         <tr>
                             <td style="background:#f9fafb; padding:15px; text-align:center;
                                        font-size:12px; color:#888;">
-                                OWASP Student Chapter · Sathyabama
+                                {SENDER_NAME}
                             </td>
                         </tr>
 
@@ -216,4 +221,4 @@ def send_bulk(csv_file: str):
 
 
 if __name__ == "__main__":
-    send_bulk("recipients.csv")
+    send_bulk(RECIPIENTS_CSV)
