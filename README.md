@@ -1,6 +1,6 @@
 # Dispatch
 
-A lightweight Python tool that sends bulk HTML emails via the Gmail API. Load your recipients from a CSV, configure your message and branding, and send personalized emails at scale — no SMTP setup required.
+A lightweight Python tool that sends bulk HTML emails via the Gmail API. Load your recipients from a CSV, configure your message and branding, and send personalized emails at scale - no SMTP setup required.
 
 ---
 
@@ -19,7 +19,7 @@ A lightweight Python tool that sends bulk HTML emails via the Gmail API. Load yo
 
 ```
 dispatch/
-├── script.py           # Main script — builds and sends bulk emails
+├── script.py           # Main script - builds and sends bulk emails
 ├── test_run.py         # Quick test to verify Gmail API auth and sending
 ├── recipients.csv      # Recipient list (name, email, position)
 ├── credentials.json    # Google OAuth client secret (not committed)
@@ -60,8 +60,8 @@ GOOGLE_CREDENTIALS_FILE=credentials.json
 TOKEN_FILE=token.json
 ```
 
-- `GOOGLE_CREDENTIALS_FILE` — path to your downloaded Google OAuth client secret JSON
-- `TOKEN_FILE` — path where the OAuth token will be cached after first login (default: `token.json`)
+- `GOOGLE_CREDENTIALS_FILE` - path to your downloaded Google OAuth client secret JSON
+- `TOKEN_FILE` - path where the OAuth token will be cached after first login (default: `token.json`)
 
 > All other config (sender info, branding URLs, email content) is set directly in `script.py` under the `# --- CONFIG ---` section.
 
@@ -118,12 +118,12 @@ Sends a plain test email to verify your auth and API connection.
 
 ## Notes
 
-- `credentials.json` and `token.json` are excluded from version control — never commit them.
-- The script adds a random 1.5–3s delay between emails to avoid Gmail rate limits.
+- `credentials.json` and `token.json` are excluded from version control - never commit them.
+- The script adds a random 1.5-3s delay between emails to avoid Gmail rate limits.
 - HTML email template is defined in `script.py` and can be customized freely.
 
 ---
 
 ## License
 
-MIT — see [LICENSE](LICENSE)
+MIT - see [LICENSE](LICENSE)
